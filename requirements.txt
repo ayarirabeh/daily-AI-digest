@@ -1,3 +1,4 @@
+anthropic
 langchain-community
 langchain-core
 langchain-openai
