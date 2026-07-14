@@ -262,13 +262,16 @@ nav.scrolled{border-bottom-color:var(--line);box-shadow:0 10px 30px -24px rgba(1
 @media(max-width:880px){.band{grid-template-columns:1fr;gap:1.2rem}}
 
 /* ---------- capability cards ---------- */
-.cap-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
-.cap{background:var(--white);padding:clamp(1.7rem,2.4vw,2.2rem);transition:background .3s var(--ease)}
+.cap-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.cap{background:var(--white);padding:clamp(1.9rem,2.6vw,2.4rem);transition:background .3s var(--ease)}
 .cap:hover{background:var(--paper)}
 .cap-icon{width:2.2rem;height:2.2rem;color:var(--ink)}
-.cap-tag{display:block;margin-top:1rem;font-size:.66rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--signal)}
-.cap h3{font-size:1.2rem;margin-top:.3rem;letter-spacing:-.005em}
+.cap-tag{display:block;margin-top:1.1rem;font-size:.66rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--signal)}
+.cap h3{font-size:1.28rem;margin-top:.3rem;letter-spacing:-.005em}
 .cap p{margin-top:.7rem;font-size:.88rem;color:var(--gray-600)}
+.cap ul{list-style:none;margin-top:1rem;display:flex;flex-direction:column;gap:.6rem}
+.cap li{position:relative;padding-left:1rem;font-size:.88rem;color:var(--gray-600);line-height:1.5}
+.cap li::before{content:"";position:absolute;left:0;top:.65em;width:.4rem;height:1px;background:var(--signal)}
 @media(max-width:960px){.cap-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:600px){.cap-grid{grid-template-columns:1fr}}
 
@@ -576,34 +579,49 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--signal);outline-off
     <div class="intro reveal">
       <div>
         <span class="label"><span class="num">04</span><span class="rule"></span>Capabilities</span>
-        <h2 id="cap-h">Five practices. One accountable team.</h2>
+        <h2 id="cap-h">Four practices. One accountable team.</h2>
       </div>
-      <p class="lead">Strategy without transformation is ambition, not a plan. Transformation without sovereignty over what it depends on, or the engineering to build it, doesn't scale. None of it is defensible without responsible AI built in from the start. Enterprise Intelligence&trade; connects the five into one operating model, so nothing falls in the gaps between strategy, technology and vendors.</p>
+      <p class="lead">Strategy decides where AI creates advantage. Foundations prepare the enterprise to run it at scale. Trust governs it well enough to stay defensible to a regulator, a customer, a decade. Engineering builds it so it actually ships. Enterprise Intelligence&trade; connects the four into one operating model, so nothing falls in the gaps between strategy, technology and vendors.</p>
     </div>
     <div class="cap-grid reveal-stagger reveal">
       <article class="cap">
         <svg class="cap-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
           <circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3.4"/><path d="M12 3.5v3M12 17.5v3M3.5 12h3M17.5 12h3"/>
         </svg>
-        <span class="cap-tag">Prioritise</span>
+        <span class="cap-tag">Decide</span>
         <h3>Strategy</h3>
-        <p>Where AI creates competitive advantage — prioritised into a portfolio of investments and a transformation roadmap with owners behind it.</p>
+        <ul>
+          <li>Define where AI creates competitive advantage.</li>
+          <li>Align AI investments with business priorities.</li>
+          <li>Design the operating model for enterprise transformation.</li>
+          <li>Maximise measurable business value.</li>
+        </ul>
       </article>
       <article class="cap">
         <svg class="cap-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
-          <circle cx="12" cy="12" r="8.5"/><ellipse cx="12" cy="12" rx="3.6" ry="8.5"/><path d="M3.7 9h16.6M3.7 15h16.6"/>
+          <rect x="7" y="4" width="10" height="3.4" rx=".5"/><rect x="4.5" y="10.3" width="15" height="3.4" rx=".5"/><rect x="2.5" y="16.6" width="19" height="3.4" rx=".5"/>
         </svg>
-        <span class="cap-tag">Own</span>
-        <h3>Sovereignty</h3>
-        <p>The capabilities, platforms, data and operating model that keep the enterprise's AI future under its own control.</p>
+        <span class="cap-tag">Prepare</span>
+        <h3>Foundations</h3>
+        <ul>
+          <li>Build the architecture for scalable AI.</li>
+          <li>Strengthen data, knowledge and platform capabilities.</li>
+          <li>Ensure interoperability and technology sovereignty.</li>
+          <li>Prepare the enterprise for AI at scale.</li>
+        </ul>
       </article>
       <article class="cap">
         <svg class="cap-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
           <path d="M12 3.5l7 3v5c0 4.5-2.9 7.7-7 8.5-4.1-.8-7-4-7-8.5v-5l7-3z"/><path d="M9 12l2 2 4-4.2"/>
         </svg>
-        <span class="cap-tag">Govern</span>
-        <h3>Responsible AI</h3>
-        <p>Governance, security, risk and trust, embedded by design from day one — not retrofitted once the system already runs the business.</p>
+        <span class="cap-tag">Trust</span>
+        <h3>Trust</h3>
+        <ul>
+          <li>Govern AI with confidence and accountability.</li>
+          <li>Embed responsible AI by design.</li>
+          <li>Manage security, risk and regulatory compliance.</li>
+          <li>Enable safe, transparent and resilient AI systems.</li>
+        </ul>
       </article>
       <article class="cap">
         <svg class="cap-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
@@ -611,15 +629,12 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--signal);outline-off
         </svg>
         <span class="cap-tag">Build</span>
         <h3>Engineering</h3>
-        <p>Enterprise-grade AI systems — designed, built, integrated and operated to be scalable, secure and measurable.</p>
-      </article>
-      <article class="cap">
-        <svg class="cap-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
-          <rect x="3.5" y="4" width="7" height="7" rx=".5"/><rect x="13.5" y="13" width="7" height="7" rx=".5"/><path d="M10.5 7.5h4a2 2 0 0 1 2 2v4"/>
-        </svg>
-        <span class="cap-tag">Redesign</span>
-        <h3>Transformation</h3>
-        <p>Work, operating models and workforce capability, redesigned so AI shows up as outcomes the business can actually measure.</p>
+        <ul>
+          <li>Design and deliver production-grade AI solutions.</li>
+          <li>Build intelligent agents and enterprise AI platforms.</li>
+          <li>Integrate AI seamlessly into business processes.</li>
+          <li>Scale innovation from prototype to enterprise adoption.</li>
+        </ul>
       </article>
     </div>
   </div>
