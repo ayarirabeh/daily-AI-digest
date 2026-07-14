@@ -291,12 +291,25 @@ nav.scrolled{border-bottom-color:var(--line);box-shadow:0 10px 30px -24px rgba(1
 .corner.bl{bottom:0;left:0;border-bottom:1.5px solid var(--signal);border-left:1.5px solid var(--signal)}
 .corner.br{bottom:0;right:0;border-bottom:1.5px solid var(--signal);border-right:1.5px solid var(--signal)}
 .ei-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:hsl(150 12% 20%);border:1px solid hsl(150 12% 20%)}
-.ei-card{background:var(--ink);padding:2.2rem 1.9rem}
+.ei-card{background:var(--ink);padding:2.2rem 1.9rem;position:relative}
 .ei-card:hover{background:var(--ink-2)}
 .ei-card .ei-code{font-variant-numeric:tabular-nums;font-size:.78rem;font-weight:600;letter-spacing:.04em;color:hsl(150 8% 50%)}
 .ei-card .ei-tag{margin-left:.65rem;font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--signal-tint)}
 .ei-card h3{font-size:1.22rem;margin-top:1rem;color:var(--white)}
 .ei-card p{margin-top:.7rem;font-size:.9rem;color:hsl(150 8% 70%)}
+button.ei-card{
+  display:block;width:100%;text-align:left;font:inherit;color:inherit;
+  border:none;margin:0;cursor:pointer;-webkit-appearance:none;appearance:none;
+  padding-right:3.4rem;transition:background .3s var(--ease);
+}
+button.ei-card::after{
+  content:"+";position:absolute;top:1.5rem;right:1.6rem;
+  width:1.7rem;height:1.7rem;border-radius:50%;border:1px solid hsl(150 12% 28%);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.05rem;line-height:1;color:hsl(150 8% 55%);
+  transition:border-color .3s var(--ease),color .3s var(--ease);
+}
+button.ei-card:hover::after,button.ei-card:focus-visible::after{border-color:var(--signal-tint);color:var(--signal-tint)}
 .ei-more{
   background:hsl(160 30% 13%);display:flex;flex-direction:column;justify-content:center;
   text-decoration:none;font-family:var(--font-display);font-size:1.15rem;color:var(--white);
@@ -311,6 +324,39 @@ nav.scrolled{border-bottom-color:var(--line);box-shadow:0 10px 30px -24px rgba(1
 }
 @media(max-width:960px){.ei-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:600px){.ei-grid{grid-template-columns:1fr}}
+
+/* ---------- ei module modal ---------- */
+.ei-modal{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;padding:5vh 5vw}
+.ei-modal[hidden]{display:none}
+.ei-modal-backdrop{position:absolute;inset:0;background:hsla(155,20%,4%,.72);backdrop-filter:blur(6px);opacity:0;transition:opacity .3s var(--ease)}
+.ei-modal-panel{
+  position:relative;background:var(--paper);max-width:600px;width:100%;max-height:84vh;overflow-y:auto;
+  padding:clamp(2rem,4vw,3rem);border-radius:var(--radius);box-shadow:0 40px 80px -20px rgba(0,0,0,.5);
+  opacity:0;transform:translateY(16px) scale(.98);transition:opacity .3s var(--ease),transform .3s var(--ease);
+}
+.ei-modal.open .ei-modal-backdrop{opacity:1}
+.ei-modal.open .ei-modal-panel{opacity:1;transform:none}
+.ei-modal-panel:focus{outline:none}
+.ei-modal-close{
+  position:absolute;top:1.3rem;right:1.3rem;width:2.2rem;height:2.2rem;border:1px solid var(--line-2);
+  border-radius:50%;background:none;display:flex;align-items:center;justify-content:center;
+  color:var(--charcoal);cursor:pointer;transition:border-color .25s var(--ease),color .25s var(--ease);
+}
+.ei-modal-close:hover{border-color:var(--ink);color:var(--ink)}
+.ei-modal-head{display:flex;align-items:baseline;gap:.7rem;padding-right:2rem}
+.ei-modal-code{font-variant-numeric:tabular-nums;font-size:.8rem;font-weight:600;letter-spacing:.04em;color:var(--signal)}
+.ei-modal-tag{font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-400)}
+.ei-modal-title{font-size:clamp(1.5rem,3vw,2rem);margin-top:.6rem;color:var(--ink);letter-spacing:-.01em}
+.ei-modal-summary{margin-top:1.2rem;color:var(--gray-600);font-size:1rem;max-width:56ch}
+.ei-modal-principles{margin-top:1.8rem;padding-top:1.5rem;border-top:1px solid var(--line)}
+.ei-modal-plabel{font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-400)}
+.ei-modal-principles ul{list-style:none;margin-top:1rem;display:flex;flex-direction:column;gap:.9rem}
+.ei-modal-principles li{padding-left:1.4rem;position:relative;color:var(--charcoal);font-size:.94rem}
+.ei-modal-principles li::before{content:"";position:absolute;left:0;top:.6em;width:.5rem;height:1px;background:var(--signal)}
+@media(max-width:600px){
+  .ei-modal{padding:0}
+  .ei-modal-panel{max-width:none;width:100%;height:100%;max-height:none;border-radius:0}
+}
 
 /* ---------- trust ---------- */
 .trust-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(2rem,6vw,5rem);align-items:start}
@@ -477,41 +523,41 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--signal);outline-off
       <span class="corner tl" aria-hidden="true"></span><span class="corner tr" aria-hidden="true"></span>
       <span class="corner bl" aria-hidden="true"></span><span class="corner br" aria-hidden="true"></span>
       <div class="ei-grid reveal-stagger reveal">
-        <article class="ei-card cap">
+        <button class="ei-card cap" type="button" data-ei="01">
           <span class="ei-code">EI&middot;01</span><span class="ei-tag">Diagnose</span>
           <h3>Confidence Index</h3>
           <p>A rigorous score for how ready — and how confident — the enterprise actually is to run on AI: decisions, data, agents, governance, durability.</p>
-        </article>
-        <article class="ei-card cap">
+        </button>
+        <button class="ei-card cap" type="button" data-ei="02">
           <span class="ei-code">EI&middot;02</span><span class="ei-tag">Benchmark</span>
           <h3>Maturity Assessment</h3>
           <p>Where the enterprise sits on the path from automated, to augmented, to agentic, to intelligent — benchmarked against peers and what it can absorb next.</p>
-        </article>
-        <article class="ei-card cap">
+        </button>
+        <button class="ei-card cap" type="button" data-ei="03">
           <span class="ei-code">EI&middot;03</span><span class="ei-tag">Design</span>
           <h3>Reference Architecture</h3>
           <p>A blueprint for human&ndash;agent collaboration — decision rights, controls and escalation paths, engineered before a line of code is written.</p>
-        </article>
-        <article class="ei-card cap">
+        </button>
+        <button class="ei-card cap" type="button" data-ei="04">
           <span class="ei-code">EI&middot;04</span><span class="ei-tag">Govern</span>
           <h3>Responsible AI Framework</h3>
           <p>The governance operating model that earns AI the right to scale — controls, assurance and regulatory readiness turned into advantage.</p>
-        </article>
-        <article class="ei-card cap">
+        </button>
+        <button class="ei-card cap" type="button" data-ei="05">
           <span class="ei-code">EI&middot;05</span><span class="ei-tag">Decide</span>
           <h3>Strategy Framework</h3>
           <p>The discipline leadership teams use to prioritise AI investment: where it creates enterprise value, where it destroys capital, what gets funded first.</p>
-        </article>
-        <article class="ei-card cap">
+        </button>
+        <button class="ei-card cap" type="button" data-ei="06">
           <span class="ei-code">EI&middot;06</span><span class="ei-tag">Realise</span>
           <h3>Value Realisation Framework</h3>
           <p>Every initiative tied to a named P&amp;L line, tracked from business case to landed value. No orphaned pilots, no unaccountable spend.</p>
-        </article>
-        <article class="ei-card cap">
+        </button>
+        <button class="ei-card cap" type="button" data-ei="07">
           <span class="ei-code">EI&middot;07</span><span class="ei-tag">Educate</span>
           <h3>Academy</h3>
           <p>A structured curriculum for senior leaders — briefings, simulations and closed-door peer sessions, with no vendors in the room.</p>
-        </article>
+        </button>
         <a class="ei-card ei-more cap" href="#contact">
           <span>Ask which module<br>your business needs first</span>
           <span class="link-arrow" style="color:var(--signal-tint);margin-top:1.2rem">Talk to an advisor
@@ -690,6 +736,24 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--signal);outline-off
   </div>
 </footer>
 
+<div class="ei-modal" id="eiModal" hidden>
+  <div class="ei-modal-backdrop" data-ei-close></div>
+  <div class="ei-modal-panel" role="dialog" aria-modal="true" aria-labelledby="eiModalTitle" tabindex="-1">
+    <button class="ei-modal-close" type="button" data-ei-close aria-label="Close">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <div class="ei-modal-head">
+      <span class="ei-modal-code" id="eiModalCode"></span><span class="ei-modal-tag" id="eiModalTag"></span>
+    </div>
+    <h3 class="ei-modal-title" id="eiModalTitle"></h3>
+    <p class="ei-modal-summary" id="eiModalSummary"></p>
+    <div class="ei-modal-principles">
+      <span class="ei-modal-plabel">Guiding principles</span>
+      <ul id="eiModalList"></ul>
+    </div>
+  </div>
+</div>
+
 <script>
 const nav=document.getElementById('nav');
 addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>10),{passive:true});
@@ -713,6 +777,73 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{
   if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
 }),{threshold:.15});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+const eiData={
+  '01':{code:'EI 01',tag:'Diagnose',title:'Confidence Index',
+    summary:"The Confidence Index is a structured diagnostic that scores an enterprise across five dimensions — decisions, data, agents, governance and durability — before any strategy is proposed. It replaces opinion with evidence: where the organisation is genuinely ready to run on AI, and where the gaps are wide enough to sink an initiative before it starts.",
+    principles:["Evidence before opinion — no recommendation without a baseline.","Score the system, not the technology — readiness is organisational, not just technical.","Benchmarked, not flattering — the number is meant to be uncomfortable when it needs to be."]},
+  '02':{code:'EI 02',tag:'Benchmark',title:'Maturity Assessment',
+    summary:"The Maturity Assessment places the enterprise on a four-stage path — automated, augmented, agentic, intelligent — and benchmarks it against comparable organisations. It answers the question every leadership team asks after the Index: not just where we stand, but where we're actually capable of going next, and how fast.",
+    principles:["Maturity is sequential — stages can be compressed, never skipped.","Benchmark against peers, not vendor roadmaps.","The next stage must be reachable within one planning cycle, or it isn't the next stage."]},
+  '03':{code:'EI 03',tag:'Design',title:'Reference Architecture',
+    summary:"A reference architecture for human–agent collaboration: who decides, what a system can act on without sign-off, and where the escalation path runs when something goes wrong. It's engineered before a line of code is written, so the technical build inherits accountability rather than having it bolted on afterward.",
+    principles:["Decision rights are designed, never defaulted.","Every autonomous action has a named escalation path.","Architecture serves the operating model — not the other way round."]},
+  '04':{code:'EI 04',tag:'Govern',title:'Responsible AI Framework',
+    summary:"The governance operating model that lets intelligent systems run parts of the business responsibly — controls, assurance and regulatory readiness, including EU AI Act alignment, built in from the start rather than retrofitted under pressure. Designed to stay defensible in front of a regulator, a customer and a board, not just at launch but a decade on.",
+    principles:["Governance is a design input, not a compliance afterthought.","Every system has a named owner, not a committee.","Defensibility is tested against the hardest question, not the easiest audience."]},
+  '05':{code:'EI 05',tag:'Decide',title:'Strategy Framework',
+    summary:"The discipline leadership teams use to prioritise AI investment — mapping where it creates enterprise value against where it quietly destroys it, then turning that judgment into a funded portfolio with named owners and sequencing. It exists to stop good technology from becoming a bad decision.",
+    principles:["Every initiative has an owner and a number, or it doesn't get funded.","Sequence for absorption capacity, not ambition.","Kill decisions are made as deliberately as funding decisions."]},
+  '06':{code:'EI 06',tag:'Realise',title:'Value Realisation Framework',
+    summary:"A discipline that ties every AI initiative to a named P&L line and tracks it from business case to landed value — not from launch to press release. It exists because most enterprise AI spend never reaches the P&L; this is the mechanism that keeps a portfolio honest after the deck has been approved.",
+    principles:["No initiative without a named line item to move.","Value is tracked to landing, not to launch.","Orphaned pilots are closed, not carried forward."]},
+  '07':{code:'EI 07',tag:'Educate',title:'Academy',
+    summary:"A structured curriculum for senior leaders — briefings, simulations and closed-door peer sessions, with no vendors in the room. It exists because the hardest AI decisions in an enterprise are made by people who were never trained to make them, and no external advisor can sit in that room forever.",
+    principles:["No vendors in the room, ever.","Peer challenge, not lecture — the room teaches as much as the faculty.","The goal is a leadership team that needs us less next year, not more."]}
+};
+
+const eiModal=document.getElementById('eiModal');
+const eiModalPanel=eiModal.querySelector('.ei-modal-panel');
+let eiLastFocused=null;
+
+function openEiModal(id){
+  const d=eiData[id];
+  if(!d) return;
+  document.getElementById('eiModalCode').textContent=d.code;
+  document.getElementById('eiModalTag').textContent=d.tag;
+  document.getElementById('eiModalTitle').textContent=d.title;
+  document.getElementById('eiModalSummary').textContent=d.summary;
+  const list=document.getElementById('eiModalList');
+  list.innerHTML='';
+  d.principles.forEach(p=>{
+    const li=document.createElement('li');
+    li.textContent=p;
+    list.appendChild(li);
+  });
+  eiLastFocused=document.activeElement;
+  eiModal.hidden=false;
+  document.body.style.overflow='hidden';
+  requestAnimationFrame(()=>{
+    eiModal.classList.add('open');
+    eiModalPanel.focus();
+  });
+}
+function closeEiModal(){
+  if(eiModal.hidden) return;
+  eiModal.classList.remove('open');
+  document.body.style.overflow='';
+  setTimeout(()=>{
+    eiModal.hidden=true;
+    if(eiLastFocused) eiLastFocused.focus();
+  },300);
+}
+document.querySelectorAll('button.ei-card[data-ei]').forEach(btn=>{
+  btn.addEventListener('click',()=>openEiModal(btn.dataset.ei));
+});
+eiModal.querySelectorAll('[data-ei-close]').forEach(el=>el.addEventListener('click',closeEiModal));
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape' && !eiModal.hidden) closeEiModal();
+});
 </script>
 </body>
 </html>
