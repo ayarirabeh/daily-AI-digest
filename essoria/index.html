@@ -328,6 +328,25 @@ nav.scrolled{border-bottom-color:var(--line);box-shadow:0 10px 30px -24px rgba(1
 .prin-list strong{display:block;color:var(--ink);font-weight:600;font-family:var(--font-body);margin-bottom:.25rem}
 @media(max-width:880px){.trust-grid{grid-template-columns:1fr;gap:2.4rem}.compare-row{grid-template-columns:1fr}}
 
+/* ---------- the deeper shift ---------- */
+.shift{margin-top:4rem;padding-top:3rem;border-top:1px solid var(--line)}
+.shift-grid{margin-top:1.8rem}
+.shift-row{display:grid;grid-template-columns:1fr 2.2rem 1fr;align-items:center;gap:1rem;padding:1.05rem 0;border-top:1px solid var(--line)}
+.shift-row:last-child{border-bottom:1px solid var(--line)}
+.shift-row.shift-head{border-top:none;padding:0 0 .9rem}
+.shift-head span{font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-400)}
+.shift-head span:last-child{color:var(--signal)}
+.shift-row:not(.shift-head) span:first-child{color:var(--gray-600);font-size:.94rem}
+.shift-row:not(.shift-head) span:last-child{color:var(--ink);font-weight:500;font-size:.94rem}
+.shift-row .arrow{color:var(--signal);text-align:center;font-size:1rem}
+@media(max-width:700px){
+  .shift-row{grid-template-columns:1fr;gap:.3rem;padding:1.3rem 0}
+  .shift-row .arrow{display:none}
+  .shift-row:not(.shift-head) span:first-child{font-size:.86rem;color:var(--gray-400)}
+  .shift-row:not(.shift-head) span:last-child::before{content:"\2192  ";color:var(--signal)}
+  .shift-head{display:none}
+}
+
 /* ---------- contact ---------- */
 .contact-inner{display:flex;flex-direction:column;align-items:flex-start;gap:2rem}
 .contact h2{font-size:clamp(2.1rem,4.4vw,3.4rem);max-width:16ch;line-height:1.14}
@@ -623,6 +642,19 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--signal);outline-off
         <li><strong>Value, realised.</strong>Strategy ends when the value lands — we stay through execution and measure ourselves against the P&amp;L.</li>
         <li><strong>Built to endure.</strong>A successful engagement is one our clients could eventually run without us.</li>
       </ul>
+    </div>
+    <div class="shift reveal">
+      <span class="label"><span class="rule"></span>The deeper shift</span>
+      <div class="shift-grid">
+        <div class="shift-row shift-head">
+          <span>The industrial model</span><span aria-hidden="true"></span><span>EssorIA</span>
+        </div>
+        <div class="shift-row"><span>Delivers a project.</span><span class="arrow" aria-hidden="true">&rarr;</span><span>Redesigns the enterprise.</span></div>
+        <div class="shift-row"><span>Implements today's technology.</span><span class="arrow" aria-hidden="true">&rarr;</span><span>Redesigns how the business operates.</span></div>
+        <div class="shift-row"><span>Ships isolated AI use cases.</span><span class="arrow" aria-hidden="true">&rarr;</span><span>Transforms the capability end-to-end.</span></div>
+        <div class="shift-row"><span>Hands over a recommendation.</span><span class="arrow" aria-hidden="true">&rarr;</span><span>Leaves an operating model, and the governance to run it.</span></div>
+        <div class="shift-row"><span>Modernises today's organisation.</span><span class="arrow" aria-hidden="true">&rarr;</span><span>Designs tomorrow's intelligent enterprise.</span></div>
+      </div>
     </div>
   </div>
 </section>
