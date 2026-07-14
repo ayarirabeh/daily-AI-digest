@@ -269,7 +269,8 @@ nav.scrolled{border-bottom-color:var(--line);box-shadow:0 10px 30px -24px rgba(1
 .cap{background:var(--white);padding:clamp(1.7rem,2.4vw,2.2rem);transition:background .3s var(--ease)}
 .cap:hover{background:var(--paper)}
 .cap-icon{width:2.2rem;height:2.2rem;color:var(--ink)}
-.cap h3{font-size:1.2rem;margin-top:1.3rem;letter-spacing:-.005em}
+.cap-tag{display:block;margin-top:1rem;font-size:.66rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--signal)}
+.cap h3{font-size:1.2rem;margin-top:.3rem;letter-spacing:-.005em}
 .cap p{margin-top:.7rem;font-size:.88rem;color:var(--gray-600)}
 @media(max-width:960px){.cap-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:600px){.cap-grid{grid-template-columns:1fr}}
@@ -540,6 +541,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--signal);outline-off
         <svg class="cap-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
           <circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3.4"/><path d="M12 3.5v3M12 17.5v3M3.5 12h3M17.5 12h3"/>
         </svg>
+        <span class="cap-tag">Prioritise</span>
         <h3>Clarity</h3>
         <p>Where AI creates value, and where it quietly destroys it — turned into a portfolio with owners and money behind it.</p>
       </article>
@@ -547,13 +549,15 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--signal);outline-off
         <svg class="cap-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
           <rect x="3.5" y="4" width="7" height="7" rx=".5"/><rect x="13.5" y="13" width="7" height="7" rx=".5"/><path d="M10.5 7.5h4a2 2 0 0 1 2 2v4"/>
         </svg>
+        <span class="cap-tag">Redesign</span>
         <h3>Evolution</h3>
-        <p>Decision rights, controls and structure, redesigned around human&ndash;agent collaboration — and followed through until it holds.</p>
+        <p>Decision rights, roles and structure, redesigned around human&ndash;agent collaboration — and followed through until it holds.</p>
       </article>
       <article class="cap">
         <svg class="cap-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
           <path d="M12 3.5l7 3v5c0 4.5-2.9 7.7-7 8.5-4.1-.8-7-4-7-8.5v-5l7-3z"/><path d="M9 12l2 2 4-4.2"/>
         </svg>
+        <span class="cap-tag">Safeguard</span>
         <h3>Integrity</h3>
         <p>The controls and assurance that let intelligent systems run the business — defensible to a regulator, a customer, a decade.</p>
       </article>
@@ -561,13 +565,15 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--signal);outline-off
         <svg class="cap-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
           <circle cx="12" cy="12" r="8.5"/><ellipse cx="12" cy="12" rx="3.6" ry="8.5"/><path d="M3.7 9h16.6M3.7 15h16.6"/>
         </svg>
+        <span class="cap-tag">Own</span>
         <h3>Sovereignty</h3>
-        <p>Control over the data, infrastructure and cost base intelligence depends on — so scale doesn't quietly become dependency, or footprint.</p>
+        <p>Ownership of the data, infrastructure and cost base intelligence depends on — so scale doesn't quietly become dependency, or footprint.</p>
       </article>
       <article class="cap">
         <svg class="cap-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
           <path d="M12 3.8l7.2 4.1v8.2L12 20.2l-7.2-4.1V7.9L12 3.8z"/><path d="M12 3.8v8.2M12 12l7.2-4.1M12 12L4.8 7.9"/>
         </svg>
+        <span class="cap-tag">Build</span>
         <h3>Engineering</h3>
         <p>Production-grade agents and tooling, built to earn a named outcome — and transferred to the teams who'll run them.</p>
       </article>
