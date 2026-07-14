@@ -4,27 +4,40 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EssorIA Advisory — Enterprise AI Strategy, Transformation &amp; Governance</title>
-<meta name="description" content="EssorIA Advisory is an independent advisory firm for enterprise AI strategy, transformation, governance and operating models. We help boards and executive teams turn AI into an operating advantage.">
+<meta name="description" content="EssorIA Advisory is an independent enterprise AI advisory firm built on Enterprise Intelligence™ — our proprietary system spanning confidence diagnostics, maturity assessment, reference architecture, responsible AI governance, strategy frameworks and executive education.">
 <link rel="canonical" href="https://essoria.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="EssorIA Advisory">
-<meta property="og:title" content="EssorIA Advisory — Enterprise AI Strategy, Transformation & Governance">
-<meta property="og:description" content="Independent advisory for enterprises turning AI into an operating advantage — strategy, transformation, governance and applied solutions.">
+<meta property="og:title" content="EssorIA Advisory — Enterprise Intelligence™ for Enterprise AI">
+<meta property="og:description" content="Independent advisory built on Enterprise Intelligence™ — the proprietary system behind strategy, transformation, governance and applied AI solutions.">
 <meta property="og:url" content="https://essoria.com/">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="EssorIA Advisory — Enterprise AI Strategy, Transformation & Governance">
-<meta name="twitter:description" content="Independent advisory for enterprises turning AI into an operating advantage.">
+<meta name="twitter:title" content="EssorIA Advisory — Enterprise Intelligence™ for Enterprise AI">
+<meta name="twitter:description" content="Independent advisory built on Enterprise Intelligence™, our proprietary system for enterprise AI decisions.">
 <meta name="theme-color" content="#0E1712">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "name": "EssorIA Advisory",
-  "description": "Independent advisory firm for enterprise AI strategy, transformation, governance and operating models.",
+  "description": "Independent advisory firm for enterprise AI, built on Enterprise Intelligence™ — a proprietary system spanning diagnostics, maturity assessment, reference architecture, responsible AI governance, strategy and executive education.",
   "url": "https://essoria.com/",
   "email": "contact@essoria.com",
   "areaServed": "Global",
-  "knowsAbout": ["Enterprise AI Strategy", "AI Governance", "Operating Model Transformation", "Agentic AI", "AI Due Diligence"]
+  "knowsAbout": ["Enterprise Intelligence", "Enterprise AI Strategy", "AI Governance", "Responsible AI", "AI Maturity Assessment", "Reference Architecture", "Operating Model Transformation", "Agentic AI", "AI Due Diligence"],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Enterprise Intelligence",
+    "itemListElement": [
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Confidence Index"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Maturity Assessment"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Reference Architecture"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Responsible AI Framework"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Strategy Framework"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Value Realisation Framework"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Academy"}}
+    ]
+  }
 }
 </script>
 <style>
@@ -271,18 +284,35 @@ nav.scrolled{border-bottom-color:var(--line);box-shadow:0 10px 30px -24px rgba(1
 @media(max-width:960px){.ind-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:600px){.ind-grid{grid-template-columns:1fr}}
 
-/* ---------- approach / method steps ---------- */
-.steps{display:flex;flex-direction:column}
-.step{
-  display:grid;grid-template-columns:5rem 1fr;gap:2rem;padding:2.4rem 0;
-  border-top:1px solid hsl(150 12% 20%);
+/* ---------- enterprise intelligence: the core system ---------- */
+.ei-mark{width:1.1em;height:1.1em;vertical-align:-.13em;margin-right:.18em;color:var(--signal)}
+.ei-frame{position:relative;padding:.4rem;margin-top:.5rem}
+.corner{position:absolute;width:18px;height:18px;pointer-events:none}
+.corner.tl{top:0;left:0;border-top:1.5px solid var(--signal);border-left:1.5px solid var(--signal)}
+.corner.tr{top:0;right:0;border-top:1.5px solid var(--signal);border-right:1.5px solid var(--signal)}
+.corner.bl{bottom:0;left:0;border-bottom:1.5px solid var(--signal);border-left:1.5px solid var(--signal)}
+.corner.br{bottom:0;right:0;border-bottom:1.5px solid var(--signal);border-right:1.5px solid var(--signal)}
+.ei-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:hsl(150 12% 20%);border:1px solid hsl(150 12% 20%)}
+.ei-card{background:var(--ink);padding:2.2rem 1.9rem}
+.ei-card:hover{background:var(--ink-2)}
+.ei-card .ei-code{font-variant-numeric:tabular-nums;font-size:.78rem;font-weight:600;letter-spacing:.04em;color:hsl(150 8% 50%)}
+.ei-card .ei-tag{margin-left:.65rem;font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--signal-tint)}
+.ei-card h3{font-size:1.22rem;margin-top:1rem;color:var(--white)}
+.ei-card p{margin-top:.7rem;font-size:.9rem;color:hsl(150 8% 70%)}
+.ei-more{
+  background:hsl(160 30% 13%);display:flex;flex-direction:column;justify-content:center;
+  text-decoration:none;font-family:var(--font-display);font-size:1.15rem;color:var(--white);
+  line-height:1.35;
 }
-.step:last-child{border-bottom:1px solid hsl(150 12% 20%)}
-.step-num{font-family:var(--font-display);font-size:1.4rem;color:hsl(150 8% 50%);padding-top:.15rem}
-.step h3{font-size:1.3rem;color:var(--white)}
-.step .step-tag{display:block;margin-top:.5rem;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--signal-tint)}
-.step p{margin-top:.8rem;font-size:.95rem;color:hsl(150 8% 72%);max-width:56ch}
-@media(max-width:700px){.step{grid-template-columns:1fr;gap:.6rem}}
+.ei-more:hover{background:hsl(160 32% 16%)}
+.ei-more .link-arrow svg{transition:transform .3s var(--ease)}
+.ei-more:hover .link-arrow svg{transform:translateX(4px)}
+.ei-foot{
+  margin-top:2.6rem;padding-top:1.8rem;border-top:1px solid hsl(150 12% 20%);
+  color:hsl(150 8% 65%);font-size:.94rem;max-width:56ch;
+}
+@media(max-width:960px){.ei-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.ei-grid{grid-template-columns:1fr}}
 
 /* ---------- trust ---------- */
 .trust-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(2rem,6vw,5rem);align-items:start}
@@ -326,7 +356,9 @@ footer a:hover{color:var(--ink)}
 .reveal-stagger.in .cap:nth-child(2),.reveal-stagger.in .ind:nth-child(2){transition-delay:.08s}
 .reveal-stagger.in .cap:nth-child(3),.reveal-stagger.in .ind:nth-child(3){transition-delay:.16s}
 .reveal-stagger.in .cap:nth-child(4),.reveal-stagger.in .ind:nth-child(4){transition-delay:.24s}
-.reveal-stagger.in .ind:nth-child(5){transition-delay:.32s}
+.reveal-stagger.in .cap:nth-child(5),.reveal-stagger.in .ind:nth-child(5){transition-delay:.32s}
+.reveal-stagger.in .cap:nth-child(6){transition-delay:.4s}
+.reveal-stagger.in .cap:nth-child(7){transition-delay:.48s}
 
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
@@ -344,9 +376,9 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--signal);outline-off
   <div class="nav-inner">
     <a class="wordmark" href="#top" aria-label="EssorIA Advisory — home">Essor<span>IA</span></a>
     <div class="nav-links">
+      <a href="#ei">Enterprise Intelligence</a>
       <a href="#capabilities">Capabilities</a>
       <a href="#industries">Industries</a>
-      <a href="#approach">Approach</a>
       <a href="#trust">Why us</a>
       <a class="btn btn-primary" href="#contact">Talk to an advisor</a>
     </div>
@@ -357,9 +389,9 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--signal);outline-off
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
+  <a href="#ei">Enterprise Intelligence</a>
   <a href="#capabilities">Capabilities</a>
   <a href="#industries">Industries</a>
-  <a href="#approach">Approach</a>
   <a href="#trust">Why us</a>
   <a class="btn" href="#contact">Talk to an advisor</a>
 </div>
@@ -370,10 +402,10 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--signal);outline-off
     <div>
       <span class="label"><span class="rule"></span>Enterprise AI Advisory</span>
       <h1>AI that earns its place in the business<span style="color:var(--signal)">.</span></h1>
-      <p class="lead">EssorIA advises boards and executive teams on enterprise AI strategy, transformation and governance — so intelligence becomes an operating advantage, not another initiative competing for budget.</p>
+      <p class="lead">EssorIA advises boards and executive teams on enterprise AI — strategy, transformation, governance — through <strong style="color:var(--ink);font-weight:600">Enterprise Intelligence&trade;</strong>, our proprietary system for how AI decisions get made, governed and proven.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="#contact">Talk to an advisor</a>
-        <a class="btn btn-ghost" href="#approach">See our approach</a>
+        <a class="btn btn-ghost" href="#ei">See the system</a>
       </div>
     </div>
     <div aria-hidden="true">
@@ -413,16 +445,64 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--signal);outline-off
   </div>
 </section>
 
-<!-- ============ 03 · HOW WE HELP ============ -->
-<section class="section-alt" aria-labelledby="how-h">
+<!-- ============ 03 · ENTERPRISE INTELLIGENCE — THE CORE SYSTEM ============ -->
+<section id="ei" class="section-dark" aria-labelledby="ei-h">
   <div class="wrap">
     <div class="intro reveal">
       <div>
-        <span class="label"><span class="num">03</span><span class="rule"></span>How we help</span>
-        <h2 id="how-h">We connect strategy, architecture and execution.</h2>
+        <span class="label"><span class="num">03</span><span class="rule"></span>The system</span>
+        <h2 id="ei-h"><svg class="ei-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M7.5 14.5L11 10l2.5 2.5L17 8"/><circle cx="17" cy="8" r="1.1" fill="currentColor" stroke="none"/></svg>Enterprise Intelligence<span style="color:var(--signal)">&trade;.</span></h2>
       </div>
-      <p class="lead">EssorIA is an independent advisory firm for enterprise AI. We work at board level and in the engine room — setting the strategy, redesigning how decisions get made, building the governance that earns AI the right to scale, and shipping the systems that prove it.</p>
+      <p class="lead" style="color:hsl(150 8% 72%)">Advice that lives only in slides dies with the engagement. Enterprise Intelligence&trade; is EssorIA's proprietary operating system for AI decisions — codified once, refined on every engagement, and <strong style="color:#fff">transferred to your teams, not licensed to them.</strong></p>
     </div>
+    <div class="ei-frame reveal">
+      <span class="corner tl" aria-hidden="true"></span><span class="corner tr" aria-hidden="true"></span>
+      <span class="corner bl" aria-hidden="true"></span><span class="corner br" aria-hidden="true"></span>
+      <div class="ei-grid reveal-stagger reveal">
+        <article class="ei-card cap">
+          <span class="ei-code">EI&middot;01</span><span class="ei-tag">Diagnose</span>
+          <h3>Confidence Index</h3>
+          <p>A rigorous score for how ready — and how confident — the enterprise actually is to run on AI: decisions, data, agents, governance, durability.</p>
+        </article>
+        <article class="ei-card cap">
+          <span class="ei-code">EI&middot;02</span><span class="ei-tag">Benchmark</span>
+          <h3>Maturity Assessment</h3>
+          <p>Where the enterprise sits on the path from automated, to augmented, to agentic, to intelligent — benchmarked against peers and what it can absorb next.</p>
+        </article>
+        <article class="ei-card cap">
+          <span class="ei-code">EI&middot;03</span><span class="ei-tag">Design</span>
+          <h3>Reference Architecture</h3>
+          <p>A blueprint for human&ndash;agent collaboration — decision rights, controls and escalation paths, engineered before a line of code is written.</p>
+        </article>
+        <article class="ei-card cap">
+          <span class="ei-code">EI&middot;04</span><span class="ei-tag">Govern</span>
+          <h3>Responsible AI Framework</h3>
+          <p>The governance operating model that earns AI the right to scale — controls, assurance and regulatory readiness turned into advantage.</p>
+        </article>
+        <article class="ei-card cap">
+          <span class="ei-code">EI&middot;05</span><span class="ei-tag">Decide</span>
+          <h3>Strategy Framework</h3>
+          <p>The discipline boards use to prioritise AI investment: where it creates enterprise value, where it destroys capital, what gets funded first.</p>
+        </article>
+        <article class="ei-card cap">
+          <span class="ei-code">EI&middot;06</span><span class="ei-tag">Realise</span>
+          <h3>Value Realisation Framework</h3>
+          <p>Every initiative tied to a named P&amp;L line, tracked from business case to landed value. No orphaned pilots, no unaccountable spend.</p>
+        </article>
+        <article class="ei-card cap">
+          <span class="ei-code">EI&middot;07</span><span class="ei-tag">Educate</span>
+          <h3>Academy</h3>
+          <p>A structured curriculum for executives and boards — briefings, simulations and closed-door peer sessions, with no vendors in the room.</p>
+        </article>
+        <a class="ei-card ei-more cap" href="#contact">
+          <span>Ask which module<br>your business needs first</span>
+          <span class="link-arrow" style="color:var(--signal-tint);margin-top:1.2rem">Talk to an advisor
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </a>
+      </div>
+    </div>
+    <p class="ei-foot reveal">Clients don't just receive recommendations. They inherit a system — and every engagement makes it sharper.</p>
   </div>
 </section>
 
@@ -434,7 +514,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--signal);outline-off
         <span class="label"><span class="num">04</span><span class="rule"></span>Capabilities</span>
         <h2 id="cap-h">Four disciplines. One accountable team.</h2>
       </div>
-      <p class="lead">Strategy without transformation is theatre. Transformation without governance does not survive contact with a board. Neither is worth anything until it ships. We hold all four, so nothing falls in the gaps between vendors.</p>
+      <p class="lead">Strategy without transformation is theatre. Transformation without governance does not survive contact with a board. Neither is worth anything until it ships. Enterprise Intelligence&trade; is what connects the four, so nothing falls in the gaps between vendors.</p>
     </div>
     <div class="cap-grid reveal-stagger reveal">
       <article class="cap">
@@ -509,59 +589,12 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--signal);outline-off
   </div>
 </section>
 
-<!-- ============ 06 · OUR APPROACH ============ -->
-<section id="approach" class="section-dark" aria-labelledby="app-h">
-  <div class="wrap">
-    <div class="intro reveal">
-      <div>
-        <span class="label"><span class="num">06</span><span class="rule"></span>Our approach</span>
-        <h2 id="app-h">A method, not a deck.</h2>
-      </div>
-      <p class="lead" style="color:hsl(150 8% 72%)">Advice that lives only in slides dies with the engagement. Ours is codified into <strong style="color:#fff">Enterprise Intelligence&trade;</strong> — refined on every engagement, transferred rather than licensed.</p>
-    </div>
-    <div class="steps reveal">
-      <div class="step">
-        <div class="step-num">01</div>
-        <div>
-          <h3>Diagnose</h3>
-          <span class="step-tag">The Enterprise Intelligence Index</span>
-          <p>A rigorous diagnostic scoring how intelligent the enterprise actually is — decisions, data, agents, governance, durability. Evidence before opinion.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">02</div>
-        <div>
-          <h3>Design</h3>
-          <span class="step-tag">The Agentic Operating Model Blueprint</span>
-          <p>A reference architecture for human&ndash;agent collaboration: roles, decision rights, controls and escalation paths.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">03</div>
-        <div>
-          <h3>Deliver</h3>
-          <span class="step-tag">The Essor Curve</span>
-          <p>A maturity path from automated, to augmented, to agentic, to intelligent — sequenced against what the business can actually absorb.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">04</div>
-        <div>
-          <h3>Sustain</h3>
-          <span class="step-tag">The Value Realisation Ledger</span>
-          <p>Every initiative tied to a named P&amp;L line, tracked from business case to landed value. No orphaned pilots, no unaccountable spend.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 07 · WHY CLIENTS TRUST US ============ -->
+<!-- ============ 06 · WHY CLIENTS TRUST US ============ -->
 <section id="trust" class="section-alt" aria-labelledby="trust-h">
   <div class="wrap">
     <div class="intro reveal">
       <div>
-        <span class="label"><span class="num">07</span><span class="rule"></span>Why clients trust us</span>
+        <span class="label"><span class="num">06</span><span class="rule"></span>Why clients trust us</span>
         <h2 id="trust-h">Independent by design.</h2>
       </div>
       <p class="lead">Most firms advising you on AI are paid, in some form, by the people selling it. We hold no software, no licences, no vendor commissions — our only product is judgment our clients can act on.</p>
@@ -586,10 +619,10 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--signal);outline-off
   </div>
 </section>
 
-<!-- ============ 08 · CONTACT ============ -->
+<!-- ============ 07 · CONTACT ============ -->
 <section id="contact" class="section-dark contact" aria-labelledby="contact-h">
   <div class="wrap contact-inner reveal">
-    <span class="label"><span class="num">08</span><span class="rule"></span>Start a conversation</span>
+    <span class="label"><span class="num">07</span><span class="rule"></span>Start a conversation</span>
     <h2 id="contact-h">Bring us your hardest AI decision.</h2>
     <p class="lead">If the stakes are high and the answer isn't obvious, that's the conversation worth having.</p>
     <a class="mail" href="mailto:contact@essoria.com">contact@essoria.com</a>
