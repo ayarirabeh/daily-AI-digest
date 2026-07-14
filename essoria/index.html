@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EssorIA — Enterprise Intelligence</title>
+<meta name="description" content="EssorIA is an independent Enterprise Intelligence advisory firm: AI strategy, transformation, intelligent systems built for value, and durability.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --nuit:#1D2B4F;         /* bleu nuit — brand */
+  --nuit-2:#141F3B;       /* deeper nuit, for gradients */
+  --encre:#0D1321;        /* ink — text & premium dark */
+  --papier:#FAFAF7;       /* paper — default background */
+  --graphite:#4A5361;     /* secondary text, captions */
+  --or:#A9853F;           /* burnt gold — the single accent */
+  --or-clair:#C9A659;     /* gold on dark backgrounds */
+  --or-vif:#E4C173;       /* gold highlight, shimmer peak */
+  --brume:#E7E4DC;        /* rules and borders, never text */
+  --maxw:1180px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Instrument Sans',Helvetica,Arial,sans-serif;
+  font-weight:400;
+  background:var(--papier);
+  color:var(--encre);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  position:relative;
+}
+::selection{background:var(--nuit);color:#fff}
+
+/* ---------- grain: a tactile, print-like layer over every surface ---------- */
+body::before{
+  content:"";position:fixed;inset:0;z-index:2;pointer-events:none;
+  opacity:.035;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+@media(prefers-color-scheme:dark){body::before{mix-blend-mode:overlay;opacity:.05}}
+
+/* ---------- typography ---------- */
+h1,h2,h3{font-family:'Playfair Display',Didot,'Bodoni MT',serif;font-weight:500;letter-spacing:0}
+.eyebrow{
+  font-family:'Instrument Sans',sans-serif;font-weight:500;
+  font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--graphite);
+  display:inline-flex;align-items:center;gap:.7em;
+}
+.eyebrow::before{content:"";width:1.2em;height:1px;background:var(--or);display:inline-block}
+.period{color:var(--or)}
+.shimmer{
+  background:linear-gradient(100deg,var(--or) 20%,var(--or-vif) 42%,var(--or) 64%);
+  background-size:220% 100%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:shimmer 7s ease-in-out infinite;
+}
+@keyframes shimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+
+/* ---------- layout ---------- */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 6vw}
+section{padding:9rem 0}
+@media(max-width:720px){section{padding:5.5rem 0}}
+
+/* ---------- nav ---------- */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:80;
+  background:rgba(250,250,247,.82);backdrop-filter:blur(14px) saturate(1.4);
+  border-bottom:1px solid transparent;
+  box-shadow:0 0 0 rgba(13,19,33,0);
+  transition:box-shadow .4s var(--ease),border-color .4s var(--ease),background .4s var(--ease);
+}
+nav.scrolled{
+  border-bottom-color:var(--brume);
+  box-shadow:0 12px 32px -20px rgba(13,19,33,.28);
+}
+.nav-inner{
+  max-width:var(--maxw);margin:0 auto;padding:1.15rem 6vw;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.wordmark{
+  font-family:'Playfair Display',serif;font-weight:500;font-size:1.3rem;
+  letter-spacing:.14em;text-decoration:none;color:var(--nuit);
+  text-transform:uppercase;
+}
+.wordmark em{font-style:normal}
+.nav-links{display:flex;gap:2.4rem;align-items:center}
+.nav-links a{
+  font-size:.85rem;font-weight:500;color:var(--encre);text-decoration:none;
+  letter-spacing:.02em;position:relative;
+}
+.nav-links a::after{
+  content:"";position:absolute;left:0;bottom:-4px;height:1px;width:0;
+  background:var(--or);transition:width .3s var(--ease);
+}
+.nav-links a:hover::after,.nav-links a:focus-visible::after{width:100%}
+.nav-cta{
+  border:1px solid var(--nuit);padding:.5rem 1.2rem;border-radius:2px;
+  color:var(--nuit)!important;
+  transition:background .3s var(--ease),color .3s var(--ease),box-shadow .3s var(--ease);
+}
+.nav-cta:hover,.nav-cta:focus-visible{
+  background:var(--nuit);color:var(--papier)!important;
+  box-shadow:0 8px 20px -8px rgba(29,43,79,.55);
+}
+.nav-cta::after{display:none}
+
+/* mobile nav toggle */
+.nav-toggle{
+  display:none;width:44px;height:44px;border:none;background:none;cursor:pointer;
+  position:relative;flex:none;
+}
+.nav-toggle span,.nav-toggle span::before,.nav-toggle span::after{
+  content:"";position:absolute;left:11px;width:22px;height:1.5px;background:var(--nuit);
+  transition:transform .35s var(--ease),opacity .35s var(--ease),top .35s var(--ease);
+}
+.nav-toggle span{top:21px}
+.nav-toggle span::before{top:-7px}
+.nav-toggle span::after{top:7px}
+.nav-toggle[aria-expanded="true"] span{background:transparent}
+.nav-toggle[aria-expanded="true"] span::before{top:0;transform:rotate(45deg)}
+.nav-toggle[aria-expanded="true"] span::after{top:0;transform:rotate(-45deg)}
+
+.mobile-menu{
+  position:fixed;inset:0;z-index:70;background:var(--encre);
+  display:flex;flex-direction:column;justify-content:center;gap:1.6rem;
+  padding:6rem 10vw;
+  opacity:0;visibility:hidden;transform:translateY(-12px);
+  transition:opacity .4s var(--ease),transform .4s var(--ease),visibility 0s linear .4s;
+}
+.mobile-menu.open{opacity:1;visibility:visible;transform:none;transition:opacity .4s var(--ease),transform .4s var(--ease)}
+.mobile-menu a{
+  font-family:'Playfair Display',serif;font-size:1.8rem;color:#fff;text-decoration:none;
+  border-bottom:1px solid #2a3245;padding-bottom:1.1rem;
+}
+.mobile-menu a.nav-cta{color:var(--or-clair)!important;border-bottom-color:#2a3245}
+
+@media(max-width:820px){
+  .nav-links a:not(.nav-cta){display:none}
+  .nav-links .nav-cta{display:none}
+  .nav-toggle{display:block}
+}
+
+/* ---------- hero ---------- */
+.hero{
+  min-height:100vh;display:flex;align-items:center;position:relative;
+  padding-top:6rem;overflow:hidden;
+  background:radial-gradient(120% 90% at 82% 12%,rgba(169,133,63,.09),transparent 60%),var(--papier);
+}
+.hero h1{
+  font-size:clamp(2.5rem,6vw,5rem);
+  line-height:1.12;max-width:15ch;color:var(--nuit);
+  opacity:0;transform:translateY(22px);
+  animation:rise .9s var(--ease) .15s forwards;
+}
+.hero .sub{
+  margin-top:2.2rem;font-size:1.08rem;font-weight:400;color:var(--graphite);
+  max-width:46ch;
+  opacity:0;transform:translateY(22px);
+  animation:rise .9s var(--ease) .35s forwards;
+}
+.hero .eyebrow{
+  display:inline-flex;margin-bottom:1.6rem;
+  opacity:0;transform:translateY(14px);
+  animation:rise .8s var(--ease) 0s forwards;
+}
+.hero-actions{
+  margin-top:3rem;display:flex;gap:1.4rem;flex-wrap:wrap;
+  opacity:0;transform:translateY(22px);
+  animation:rise .9s var(--ease) .55s forwards;
+}
+@keyframes rise{to{opacity:1;transform:none}}
+.btn{
+  font-size:.9rem;font-weight:500;text-decoration:none;letter-spacing:.02em;
+  padding:.9rem 1.8rem;border-radius:2px;transition:all .3s var(--ease);
+  display:inline-block;
+}
+.btn-dark{background:var(--nuit);color:var(--papier);border:1px solid var(--nuit)}
+.btn-dark:hover{
+  background:var(--encre);border-color:var(--encre);
+  box-shadow:0 14px 32px -14px rgba(29,43,79,.55);
+  transform:translateY(-2px);
+}
+.btn-ghost{border:1px solid var(--brume);color:var(--nuit)}
+.btn-ghost:hover{border-color:var(--nuit);transform:translateY(-2px)}
+/* signature: le trait de l'essor — the one gold element of this surface */
+.essor-line{
+  position:absolute;right:-4vw;bottom:0;width:58vw;max-width:760px;height:auto;
+  pointer-events:none;opacity:.95;
+}
+.essor-line path{
+  fill:none;stroke:var(--or);stroke-width:1.5;
+  stroke-dasharray:1600;stroke-dashoffset:1600;
+  animation:draw 2.8s var(--ease) .4s forwards;
+  filter:drop-shadow(0 0 10px rgba(169,133,63,.18));
+}
+.essor-line .grid-dot{fill:var(--brume)}
+@keyframes draw{to{stroke-dashoffset:0}}
+@media(max-width:900px){.essor-line{width:90vw;opacity:.3}}
+
+/* ---------- statement band ---------- */
+.band{background:linear-gradient(155deg,var(--nuit) 0%,var(--nuit-2) 100%);color:var(--papier)}
+.band .eyebrow{color:#8b95ab}
+.band .eyebrow::before{background:var(--or-clair)}
+.band h2{
+  font-size:clamp(1.8rem,3.4vw,2.9rem);line-height:1.3;max-width:28ch;
+  font-weight:500;
+}
+.band h2 strong{font-weight:500;font-style:italic;color:var(--or-clair)}
+.band-lead{margin:1.2rem 0 1.8rem;font-weight:400;font-size:1.05rem;color:#b4bccd;max-width:52ch}
+
+/* ---------- section headers ---------- */
+.sec-head{margin-bottom:4.5rem}
+.sec-head h2{font-size:clamp(2rem,3.8vw,3rem);margin-top:.8rem;color:var(--nuit)}
+.sec-head p{margin-top:1.2rem;max-width:52ch;color:var(--graphite)}
+
+/* ---------- offerings ---------- */
+.offer{
+  border-top:1px solid var(--brume);
+  display:grid;grid-template-columns:88px 1fr 1.2fr;gap:2.5rem;
+  padding:3.4rem 0;align-items:start;
+  transition:padding .35s var(--ease);
+}
+.offer:last-of-type{border-bottom:1px solid var(--brume)}
+.offer:hover{padding-left:.6rem}
+.offer-index{
+  font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--brume);
+  padding-top:.3rem;position:relative;
+}
+.offer-index::after{
+  content:"";position:absolute;left:0;top:2.4rem;width:22px;height:1px;background:var(--or);
+  transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease);
+}
+.offer:hover .offer-index::after{transform:scaleX(1)}
+.offer h3{font-size:1.85rem;line-height:1.2;color:var(--nuit)}
+.offer h3 span{color:var(--or)}
+.offer .offer-tag{
+  display:block;margin-top:.9rem;font-size:.72rem;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--graphite);
+}
+.offer-body p{color:var(--graphite)}
+.offer-body ul{list-style:none;margin-top:1.4rem}
+.offer-body li{
+  padding:.55rem 0;border-top:1px dashed var(--brume);
+  font-size:.92rem;display:flex;gap:.8rem;align-items:baseline;color:var(--encre);
+}
+.offer-body li::before{content:"—";color:var(--nuit);flex:none}
+@media(max-width:860px){
+  .offer{grid-template-columns:1fr;gap:1.2rem;padding:2.6rem 0}
+  .offer:hover{padding-left:0}
+  .offer-index{padding-top:0}
+}
+
+/* ---------- principles ---------- */
+.principles{background:#F2F0EA}
+.prin-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--brume);border:1px solid var(--brume)}
+.prin{background:#F2F0EA;padding:2.6rem 2.2rem;transition:background .35s var(--ease),box-shadow .35s var(--ease);position:relative;z-index:1}
+.prin:hover{background:#fff;box-shadow:0 24px 48px -30px rgba(13,19,33,.22)}
+.prin h3{font-size:1.4rem;margin-bottom:.9rem;color:var(--nuit)}
+.prin p{font-size:.92rem;color:var(--graphite)}
+@media(max-width:860px){.prin-grid{grid-template-columns:1fr}}
+
+/* ---------- enterprise intelligence IP ---------- */
+.ip-grid{display:grid;grid-template-columns:1fr 1.25fr;gap:5rem;align-items:start}
+.ip-intro h2{font-size:clamp(2rem,3.8vw,3rem);margin-top:.8rem;color:var(--nuit)}
+.ip-intro p{margin-top:1.4rem;color:var(--graphite);max-width:42ch}
+.ip-intro p strong{font-weight:600;color:var(--encre)}
+.ip-note{
+  margin-top:2.4rem;padding-top:1.4rem;border-top:1px solid var(--brume);
+  font-size:.72rem;font-weight:500;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--graphite);line-height:2.1;
+}
+.asset{
+  border-top:1px solid var(--brume);
+  display:grid;grid-template-columns:96px 1fr;gap:2rem;
+  padding:2.2rem 0;align-items:start;
+  transition:padding .35s var(--ease);
+}
+.asset:last-of-type{border-bottom:1px solid var(--brume)}
+.asset:hover{padding-left:.6rem}
+.asset-code{
+  font-size:.74rem;font-weight:600;color:var(--nuit);
+  letter-spacing:.16em;padding-top:.45rem;
+}
+.asset h3{font-size:1.4rem;line-height:1.25;color:var(--nuit)}
+.asset p{margin-top:.7rem;font-size:.94rem;color:var(--graphite)}
+.asset .asset-use{
+  margin-top:.9rem;font-size:.7rem;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--graphite);
+}
+@media(max-width:900px){
+  .ip-grid{grid-template-columns:1fr;gap:2.5rem}
+  .asset{grid-template-columns:1fr;gap:.6rem;padding:1.8rem 0}
+  .asset:hover{padding-left:0}
+}
+
+/* ---------- independence ---------- */
+.indep{background:var(--encre);color:var(--papier)}
+.indep .eyebrow{color:#8b95ab}
+.indep .eyebrow::before{background:var(--or-clair)}
+.indep h2{font-size:clamp(1.9rem,3.6vw,3rem);line-height:1.3;max-width:24ch;margin-top:.9rem;color:#fff}
+.indep h2 em{font-style:italic;color:var(--or-clair)}
+.indep-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:4rem;border-top:1px solid #2a3245}
+.indep-col{padding:2.4rem 2rem 0 0;border-right:1px solid #2a3245}
+.indep-col:last-child{border-right:none;padding-right:0;padding-left:2rem}
+.indep-col:nth-child(2){padding-left:2rem}
+.indep-k{font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#8b95ab}
+.indep-col p{margin-top:1rem;font-size:.95rem;color:#c3cad7}
+.indep-col.us{position:relative}
+.indep-col.us::before{
+  content:"";position:absolute;left:2rem;right:0;top:-1px;height:2px;
+  background:linear-gradient(90deg,var(--or-clair),transparent);
+}
+.indep-col.us .indep-k{color:var(--or-clair)}
+.indep-col.us p{color:#fff}
+@media(max-width:860px){
+  .indep-grid{grid-template-columns:1fr}
+  .indep-col,.indep-col:nth-child(2),.indep-col:last-child{border-right:none;border-bottom:1px solid #2a3245;padding:2rem 0}
+  .indep-col:last-child{border-bottom:none}
+  .indep-col.us::before{left:0}
+}
+
+/* ---------- ways to start ---------- */
+.start{background:#F2F0EA}
+.start-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+.start-card{
+  background:var(--papier);border:1px solid var(--brume);padding:2.4rem 2.2rem;
+  display:flex;flex-direction:column;
+  transition:border-color .35s var(--ease),transform .35s var(--ease),box-shadow .35s var(--ease);
+}
+.start-card:hover{border-color:var(--or);transform:translateY(-6px);box-shadow:0 28px 56px -28px rgba(13,19,33,.28)}
+.start-k{font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--graphite)}
+.start-card h3{font-size:1.55rem;margin-top:1rem;color:var(--nuit)}
+.start-card p{margin-top:.9rem;font-size:.93rem;color:var(--graphite);flex:1}
+.start-meta{margin-top:1.6rem;padding-top:1rem;border-top:1px solid var(--brume);font-size:.78rem;color:var(--graphite)}
+.start-cta{margin-top:1.2rem;font-size:.85rem;font-weight:600;color:var(--nuit);text-decoration:none;display:inline-block;transition:transform .3s var(--ease)}
+.start-cta:hover{transform:translateX(4px)}
+.start-card.lead{background:linear-gradient(160deg,var(--nuit),var(--nuit-2));border-color:var(--nuit)}
+.start-card.lead:hover{box-shadow:0 28px 56px -24px rgba(29,43,79,.5)}
+.start-card.lead .start-k{color:var(--or-clair)}
+.start-card.lead h3{color:#fff}
+.start-card.lead p{color:#c3cad7}
+.start-card.lead .start-meta{border-top-color:#2a3245;color:#8b95ab}
+.start-card.lead .start-cta{color:var(--or-clair)}
+@media(max-width:860px){.start-grid{grid-template-columns:1fr}}
+
+/* ---------- who we are ---------- */
+.who-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.who-grid p{color:var(--graphite);margin-bottom:1.4rem}
+.who-grid p strong{font-weight:600;color:var(--nuit)}
+@media(max-width:860px){.who-grid{grid-template-columns:1fr;gap:1.5rem}}
+
+/* ---------- insights ---------- */
+.insight-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+.insight{
+  border:1px solid var(--brume);padding:2.2rem;display:flex;flex-direction:column;
+  min-height:280px;text-decoration:none;color:var(--encre);
+  transition:border-color .35s var(--ease),transform .35s var(--ease),box-shadow .35s var(--ease);background:#fff;
+}
+.insight:hover{border-color:var(--or);transform:translateY(-6px);box-shadow:0 28px 56px -28px rgba(13,19,33,.24)}
+.insight .eyebrow{color:var(--graphite)}
+.insight h3{font-size:1.35rem;margin-top:1rem;line-height:1.35;flex:1;color:var(--nuit)}
+.insight .read{
+  margin-top:2rem;font-size:.82rem;font-weight:600;color:var(--nuit);
+  letter-spacing:.04em;transition:transform .3s var(--ease);
+}
+.insight:hover .read{transform:translateX(4px)}
+@media(max-width:860px){.insight-grid{grid-template-columns:1fr}}
+
+/* ---------- contact ---------- */
+.contact h2{font-size:clamp(2.1rem,4.6vw,3.8rem);max-width:18ch;line-height:1.2}
+.contact a.mail{
+  display:inline-block;margin-top:2.4rem;font-family:'Playfair Display',serif;
+  font-size:clamp(1.3rem,2.6vw,1.9rem);color:var(--or-clair);text-decoration:none;
+  border-bottom:1px solid var(--or-clair);padding-bottom:.15rem;
+  transition:color .3s var(--ease),border-color .3s var(--ease);
+}
+.contact a.mail:hover{color:#fff;border-color:#fff}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--brume);padding:3rem 0;font-size:.82rem;color:var(--graphite)}
+.foot-inner{display:flex;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.foot-mark{
+  font-family:'Playfair Display',serif;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--nuit);font-size:.95rem;margin-bottom:.5rem;
+}
+footer a{color:var(--graphite);text-decoration:none;transition:color .25s var(--ease)}
+footer a:hover{color:var(--nuit)}
+
+/* ---------- reveal ---------- */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+  .hero h1,.hero .sub,.hero .eyebrow,.hero-actions{opacity:1;transform:none}
+  .essor-line path{stroke-dashoffset:0}
+  html{scroll-behavior:auto}
+}
+a:focus-visible,button:focus-visible{outline:2px solid var(--nuit);outline-offset:3px}
+</style>
+</head>
+<body>
+
+<nav id="nav" aria-label="Main">
+  <div class="nav-inner">
+    <a class="wordmark" href="#top" aria-label="EssorIA — home">Essor<em class="shimmer">IA</em></a>
+    <div class="nav-links">
+      <a href="#what">What we do</a>
+      <a href="#how">How we think</a>
+      <a href="#ip">Our method</a>
+      <a href="#start">Ways to start</a>
+      <a href="#who">Who we are</a>
+      <a href="#insights">Insights</a>
+      <a class="nav-cta" href="#contact">Start a conversation</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#what">What we do</a>
+  <a href="#how">How we think</a>
+  <a href="#ip">Our method</a>
+  <a href="#start">Ways to start</a>
+  <a href="#who">Who we are</a>
+  <a href="#insights">Insights</a>
+  <a class="nav-cta" href="#contact">Start a conversation</a>
+</div>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <svg class="essor-line" viewBox="0 0 760 420" aria-hidden="true">
+    <g class="grid">
+      <circle class="grid-dot" cx="60" cy="380" r="2"/><circle class="grid-dot" cx="200" cy="380" r="2"/>
+      <circle class="grid-dot" cx="340" cy="380" r="2"/><circle class="grid-dot" cx="480" cy="380" r="2"/>
+      <circle class="grid-dot" cx="620" cy="380" r="2"/>
+      <circle class="grid-dot" cx="60" cy="260" r="2"/><circle class="grid-dot" cx="200" cy="260" r="2"/>
+      <circle class="grid-dot" cx="340" cy="260" r="2"/><circle class="grid-dot" cx="480" cy="260" r="2"/>
+      <circle class="grid-dot" cx="620" cy="260" r="2"/>
+      <circle class="grid-dot" cx="60" cy="140" r="2"/><circle class="grid-dot" cx="200" cy="140" r="2"/>
+      <circle class="grid-dot" cx="340" cy="140" r="2"/><circle class="grid-dot" cx="480" cy="140" r="2"/>
+      <circle class="grid-dot" cx="620" cy="140" r="2"/>
+    </g>
+    <path d="M 20 400 C 140 396, 200 380, 280 340 C 360 300, 400 250, 470 190 C 540 130, 620 70, 740 20"/>
+  </svg>
+  <div class="wrap">
+    <span class="eyebrow">Enterprise Intelligence · Strategy · Transformation · Governance · Solutions</span>
+    <h1>The intelligent enterprise, built to endure<span class="period">.</span></h1>
+    <p class="sub">EssorIA advises corporate leaders at the intersection of artificial intelligence, enterprise transformation and long-term durability. Strategists who build: we connect strategy, architecture and working systems — and stay until the value is real.</p>
+    <div class="hero-actions">
+      <a class="btn btn-dark" href="#contact">Start a conversation</a>
+      <a class="btn btn-ghost" href="#what">Explore what we do</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ STATEMENT BAND ============ -->
+<section class="band">
+  <div class="wrap reveal">
+    <span class="eyebrow">Why now</span>
+    <p class="band-lead">Billions flow into enterprise AI. Most never reaches the P&amp;L — it dies in pilots, orphaned from the operating model.</p>
+    <h2>We don't sell AI. We help organisations <strong>become intelligent</strong> — and stay that way.</h2>
+  </div>
+</section>
+
+<!-- ============ WHAT WE DO ============ -->
+<section id="what">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">What we do</span>
+      <h2>Four practices. One method<span class="period">.</span></h2>
+      <p>Strategy. Transformation. Governance. Solutions. Four plain words, one proprietary method beneath them — because strategy without transformation is theatre, transformation without governance does not survive contact with a board, and neither is worth anything until it ships as a working solution.</p>
+    </div>
+
+    <article class="offer reveal">
+      <div class="offer-index">I</div>
+      <div>
+        <h3>Strategy<span>.</span></h3>
+        <span class="offer-tag">Where intelligence creates enterprise value</span>
+      </div>
+      <div class="offer-body">
+        <p>AI is not a strategy. Where it creates advantage — and where it destroys capital — is. We help boards and executive committees make the decisions that cannot be delegated, and turn them into a portfolio with owners, sequencing and money behind it.</p>
+        <ul>
+          <li>Enterprise AI &amp; agentic strategy for executive committees</li>
+          <li>Opportunity mapping, business cases and portfolio prioritisation</li>
+          <li>Enterprise AI architecture, platform and build-vs-buy decisions</li>
+          <li>AI due diligence for investors and boards</li>
+          <li>Executive &amp; board education — briefings, masterclasses, simulations</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="offer reveal">
+      <div class="offer-index">II</div>
+      <div>
+        <h3>Transformation<span>.</span></h3>
+        <span class="offer-tag">How the enterprise works when software can decide</span>
+      </div>
+      <div class="offer-body">
+        <p>Intelligence changes who decides, who executes and who is accountable. We redesign the operating model around human–agent collaboration — decision rights, controls, org structure — and run the transformation office that makes it hold.</p>
+        <ul>
+          <li>Operating model redesign — roles, decision rights, escalation</li>
+          <li>Transformation office and programme leadership</li>
+          <li>Workforce transition and executive enablement</li>
+          <li>Value realisation — measured in the P&amp;L, not in pilots</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="offer reveal">
+      <div class="offer-index">III</div>
+      <div>
+        <h3>Governance<span>.</span></h3>
+        <span class="offer-tag">The licence to operate at scale — and to endure</span>
+      </div>
+      <div class="offer-body">
+        <p>Intelligent systems earn the right to run the business, or they don't run it for long. We build the responsible-AI governance, controls and accountability that let AI scale — and keep it defensible in front of a regulator, a board and a decade.</p>
+        <ul>
+          <li>AI governance operating model — decision rights, controls, assurance</li>
+          <li>EU AI Act and regulatory readiness, turned into advantage</li>
+          <li>Risk, security and model assurance for agentic systems</li>
+          <li>Sustainable AI: cost, energy and footprint under control</li>
+          <li>Durability: systems and capability that outlive the technology cycle</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="offer reveal">
+      <div class="offer-index">IV</div>
+      <div>
+        <h3>Solutions<span>.</span></h3>
+        <span class="offer-tag">Intelligent systems that generate tangible value</span>
+      </div>
+      <div class="offer-body">
+        <p>Strategy earns its keep in production. We design, build and industrialise the AI solutions, agents and tooling that run the business — value and impact by design, not proof-of-concepts that prove nothing.</p>
+        <ul>
+          <li>Solution design: from business problem to working intelligent system</li>
+          <li>Production-grade agents, copilots and internal AI tooling</li>
+          <li>From pilot to platform — integration, industrialisation, AgentOps</li>
+          <li>Every build tied to a named P&amp;L outcome before a line of code</li>
+          <li>Capability transfer: your teams run what we build</li>
+        </ul>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ HOW WE THINK ============ -->
+<section id="how" class="principles">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">How we think</span>
+      <h2>Convictions, not slideware<span class="period">.</span></h2>
+    </div>
+    <div class="prin-grid reveal">
+      <div class="prin">
+        <h3>Think in decades.</h3>
+        <p>We optimise for long-term enterprise value, never for hype cycles. Durable is not slow: we move fast on the reversible, and deliberately on what cannot be undone.</p>
+      </div>
+      <div class="prin">
+        <h3>Independence first.</h3>
+        <p>We sell no software, resell no licences and take no vendor commissions. Our only product is judgement our clients can trust.</p>
+      </div>
+      <div class="prin">
+        <h3>Value, realised.</h3>
+        <p>Strategy ends when the value lands. We stay through execution and measure ourselves against the P&amp;L, not the deliverable.</p>
+      </div>
+      <div class="prin">
+        <h3>Small, senior teams.</h3>
+        <p>Every engagement is led by partners who do the work. No leverage pyramids, no armies of juniors learning on your budget.</p>
+      </div>
+      <div class="prin">
+        <h3>Responsible by design.</h3>
+        <p>Governance is not a compliance afterthought — it is how intelligent systems earn the right to operate at scale.</p>
+      </div>
+      <div class="prin">
+        <h3>Built to endure.</h3>
+        <p>We transfer capability, not dependency. A successful engagement is one our clients could eventually run without us.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ENTERPRISE INTELLIGENCE IP ============ -->
+<section id="ip">
+  <div class="wrap">
+    <div class="ip-grid">
+      <div class="ip-intro reveal">
+        <span class="eyebrow">Our method · proprietary IP</span>
+        <h2>Enterprise Intelligence<span class="period">.</span> Judgement, codified<span class="period">.</span></h2>
+        <p>Advice that lives only in slides dies with the engagement. Ours is codified into <strong>Enterprise Intelligence™</strong> — EssorIA's proprietary body of frameworks, diagnostics and reference architectures. Every engagement runs on it, and every engagement makes it sharper.</p>
+        <p>Clients don't just receive recommendations. They inherit a method.</p>
+        <div class="ip-note">
+          One system · Four assets<br>
+          Refined on every engagement<br>
+          Transferred, not licensed
+        </div>
+        <a class="btn btn-dark" style="display:inline-block;margin-top:2rem" href="#start">See how an engagement begins</a>
+      </div>
+      <div class="reveal">
+        <article class="asset">
+          <div class="asset-code">EI·01</div>
+          <div>
+            <h3>Enterprise Intelligence Index</h3>
+            <p>A rigorous diagnostic that scores how intelligent an enterprise actually is — across decisions, data, agents, governance and durability. Evidence before opinion, in every engagement.</p>
+            <span class="asset-use">Where you stand</span>
+          </div>
+        </article>
+        <article class="asset">
+          <div class="asset-code">EI·02</div>
+          <div>
+            <h3>The Essor Curve</h3>
+            <p>Our maturity model for the rise of the enterprise: from automated, to augmented, to agentic, to intelligent. The rising line in our identity is drawn from it — literally.</p>
+            <span class="asset-use">Where you're going</span>
+          </div>
+        </article>
+        <article class="asset">
+          <div class="asset-code">EI·03</div>
+          <div>
+            <h3>Agentic Operating Model Blueprint</h3>
+            <p>A reference architecture for human–agent collaboration: roles, decision rights, controls and escalation paths. How work is redesigned when software can decide.</p>
+            <span class="asset-use">How you get there</span>
+          </div>
+        </article>
+        <article class="asset">
+          <div class="asset-code">EI·04</div>
+          <div>
+            <h3>Value Realisation Ledger</h3>
+            <p>A discipline that ties every AI initiative to a named P&amp;L line — tracked from business case to landed value. No orphaned pilots, no unaccountable spend.</p>
+            <span class="asset-use">Proof it worked</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INDEPENDENCE ============ -->
+<section class="indep">
+  <div class="wrap reveal">
+    <span class="eyebrow">Independent by design</span>
+    <h2>Most firms advising you on AI are <em>paid by the people selling it</em>.</h2>
+    <div class="indep-grid">
+      <div class="indep-col">
+        <div class="indep-k">The consultancies</div>
+        <p>Owned by holding groups, or building the platform they just recommended. The advice and the invoice point the same way.</p>
+      </div>
+      <div class="indep-col">
+        <div class="indep-k">The integrators</div>
+        <p>Certified resellers earning platform commissions and licence margin. Neutrality is structurally impossible.</p>
+      </div>
+      <div class="indep-col us">
+        <div class="indep-k">EssorIA</div>
+        <p>No software. No licences. No reselling. No commissions. No parent company. We are paid by one party — you — and we say so in writing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WAYS TO START ============ -->
+<section id="start" class="start">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Ways to start</span>
+      <h2>Three doors. One method<span class="period">.</span></h2>
+      <p>Few enterprises begin with a mandate. Most begin with a question. Each of these is a real entry point — and each runs on Enterprise Intelligence™.</p>
+    </div>
+    <div class="start-grid reveal">
+      <div class="start-card lead">
+        <span class="start-k">EI·01 — Diagnostic</span>
+        <h3>The Index</h3>
+        <p>A structured assessment of how intelligent your enterprise actually is — decisions, data, agents, governance, durability. You leave with a score, a benchmark and the three moves that matter most.</p>
+        <div class="start-meta">2–4 weeks · Executive committee readout</div>
+        <a class="start-cta" href="#contact">Request the Index →</a>
+      </div>
+      <div class="start-card">
+        <span class="start-k">Executive education</span>
+        <h3>The Essor Circle</h3>
+        <p>An invitation-only circle for executives and board members. Four half-days a year, closed-door, peer-to-peer, no vendors in the room. Where the questions are asked that cannot be asked in front of a supplier.</p>
+        <div class="start-meta">By invitation · 12 seats · Board &amp; ExCo level</div>
+        <a class="start-cta" href="#contact">Request an invitation →</a>
+      </div>
+      <div class="start-card">
+        <span class="start-k">Advisory mandate</span>
+        <h3>The Mandate</h3>
+        <p>A senior team, a defined decision, a named P&amp;L outcome. We stay from strategy through to the working system — and we cap the number we take, so that every one of them lands.</p>
+        <div class="start-meta">Scoped per engagement · Partner-led throughout</div>
+        <a class="start-cta" href="#contact">Start a conversation →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHO WE ARE ============ -->
+<section id="who">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Who we are</span>
+      <h2>Advisers for high-stakes decisions<span class="period">.</span></h2>
+    </div>
+    <div class="who-grid reveal">
+      <div>
+        <p><strong>Essor</strong> — French, noun: a rising, a taking of flight. <strong>IA</strong> — intelligence artificielle. Our name is our thesis: the rise of the enterprise through intelligence.</p>
+        <p>EssorIA was founded on a simple observation: enterprises are being sold AI everywhere, and advised on it almost nowhere. Between the technology vendors and the generalist consultancies sits a gap — independent, senior, accountable advice on the decade's defining transformation.</p>
+      </div>
+      <div>
+        <p>We work in bespoke teams that combine executive strategy, enterprise architecture and hands-on AI engineering. We connect strategic thinking with facts, figures and working systems.</p>
+        <p>Our clients are CEOs, boards and investors facing decisions that cannot be undone cheaply. They come to us when the stakes are high and the answers are not obvious.</p>
+        <p>EssorIA is founder-led. Every client is advised by the people whose name is on the firm — with reputations at stake, not utilisation targets.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INSIGHTS ============ -->
+<section id="insights">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Insights</span>
+      <h2>Thinking, in public<span class="period">.</span></h2>
+    </div>
+    <div class="insight-grid reveal">
+      <a class="insight" href="#contact">
+        <span class="eyebrow">Perspective</span>
+        <h3>The agentic operating model: what changes when software can decide</h3>
+        <span class="read">Read the perspective →</span>
+      </a>
+      <a class="insight" href="#contact">
+        <span class="eyebrow">Executive brief</span>
+        <h3>The EU AI Act as competitive advantage, not compliance cost</h3>
+        <span class="read">Read the brief →</span>
+      </a>
+      <a class="insight" href="#ip">
+        <span class="eyebrow">Framework</span>
+        <h3>The Essor Curve: a maturity model for enterprises built to last</h3>
+        <span class="read">Explore the framework →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="band contact">
+  <div class="wrap reveal">
+    <span class="eyebrow">Start a conversation</span>
+    <h2 style="margin-top:1rem">High stakes? Let's think straight together<span class="period">.</span></h2>
+    <a class="mail" href="mailto:contact@essoria.com">contact@essoria.com</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-inner">
+    <div>
+      <div class="foot-mark">Essor<em class="shimmer">IA</em></div>
+      © 2026 EssorIA — Enterprise Intelligence. All rights reserved.<br>
+      Enterprise Intelligence™, the Enterprise Intelligence Index and the Essor Curve are proprietary methods of EssorIA.
+    </div>
+    <div style="display:flex;gap:2rem;align-items:flex-start">
+      <a href="#top">Legal</a>
+      <a href="#top">Privacy</a>
+      <a href="https://www.linkedin.com" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// nav border/shadow on scroll
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>10),{passive:true});
+
+// mobile menu
+const navToggle=document.getElementById('navToggle');
+const mobileMenu=document.getElementById('mobileMenu');
+function closeMenu(){
+  navToggle.setAttribute('aria-expanded','false');
+  mobileMenu.classList.remove('open');
+  document.body.style.overflow='';
+}
+navToggle.addEventListener('click',()=>{
+  const open=navToggle.getAttribute('aria-expanded')==='true';
+  navToggle.setAttribute('aria-expanded',String(!open));
+  mobileMenu.classList.toggle('open',!open);
+  document.body.style.overflow=open?'':'hidden';
+});
+mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
+
+// scroll reveals
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
+}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
